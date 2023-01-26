@@ -1,12 +1,17 @@
-#import sys
-#sys.stdin=open("input1.txt", "rt")
-n, k=map(int,input().split())
-a=[] # 약수를 리스트 a에 저장할 것임
+import sys
+sys.stdin=open("input.txt", "rt")
+n, k =map(int, input().split())
+# 숫자가 뛰어쓰기로 놓여져있으면 map 함수로 읽어야 한다.
+# split()가 문자들을 분리해서 읽도록 해준다.
 
-for i in range(n): # n번만큼 반복해서 약수를 찾을 것임
-    if n%(i+1)==0: # n을 (i+1)로 나눈 값의 나머지가 0이라면
-        a.append(i+1) # 리스트 a에 i+1을 추가할 것임
-a.sort() # n의 약수들을 정렬할 것임
-print(a)
-print(a[k-1])
-    
+cnt=0
+for i in range(1, n+1):
+    if n%i==0:
+        cnt +=1
+    if cnt==k:
+        print(i)
+        break
+else:
+    # 중간에서 break 당하면 else를 하지 않지만,
+    #정상적으로 for문이 끝난다면 else가 실행된다.
+    print(-1)
